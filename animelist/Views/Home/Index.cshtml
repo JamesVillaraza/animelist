@@ -7,22 +7,43 @@
 @{
     ViewData["Title"] = "Homepage"; @*shown on the chrome tab*@
 }
+
+@*css part?*@
 <style>
-    img
+    .psyduck
     {
-        width: 200px; @*controls the size of img*@
+        width: 250px; @*controls the size of img*@
         border-radius: 50%; @*controls the feathering of edges of img*@
         float: left; @*location of img when next to text*@
         margin-right: 50px; @*space between text and img*@
     }
     .heading
     {
-        font-weight: bold;
+        font-weight: bold; 
+    }
+    em
+    {
+        color: forestgreen;
+        font-style:normal;
+        font-weight:750;
+    }
+    h1{
+        color:red;
+    }
+    .banana
+    {
+        width: 100px;
+        border-radius: 50%; @*controls the feathering of edges of img*@
+        float: left; @*location of img when next to text*@
+        margin-right: 50px; @*space between text and img*@
     }
 </style>
 
-<img src="images/psyduck.jpg"/>
+@*placed in image*@
+<img class = "psyduck" src="images/psyduck.jpg" alt="cool pic of psyduck"/>
 
+@*messing with text*@
+<a href = "#section-link"> Jump to links! </a>
 <p class = "heading">
     epicsauce
     so this would all be on one line
@@ -30,3 +51,35 @@
 </p>
 
 <p>this would be on another line that's not bolded</p>
+
+<p>This <em>word</em> will be emphasized in the text</p>
+
+<br/><br/><br/>
+@*messing around with headings*@
+<h1>HTML Practice</h1>   @*6 different types of headings from h1-h6*@
+<h2>List of Epic People</h2>
+<h3>james</h3>              @*headings should be used as a heirarchy, kind of like bullet points in google docs*@
+<p>yes james is epic</p>
+<h3>dan</h3>
+<p>yes dan is also epic</p>
+
+<br/><br/><br/>
+@*html entities: printing out symbols*@
+<h2>HTML Entity Practice</h2>
+<p>Copyright sign: &copy;</p>
+<p>Less than sign: &lt;</p>
+<p>Greater than sign: &gt;</p>
+<p>#epic</p>
+
+<br/><br/><br/>
+@*links*@
+<h2 id = "section-link">Practice using links</h2>
+<a href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" target = "_blank">epic youtube video</a> 
+<a href = "https://www.youtube.com/watch?v=cGw-8FrRT1E" target = "_blank"> @*using target = "_blank" redirects link to a new page instead of overriding*@
+    <img class = "banana" src = "images/bananazoom.png" alt = "banana pic"/>
+</a>
+<p>click on banana for epic video!!</p>
+<a href = "images/bananazoom.png" target = "_blank">click to see a page on banana!</a>
+
+<br/><br/><br/><br/><br/><br/>
+<a href = "#"><br /><br />Jump back to top of page!</a>
