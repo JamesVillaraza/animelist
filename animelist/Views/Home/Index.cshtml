@@ -1,12 +1,32 @@
 ﻿@*mess around here the the index html file only*@
 
+@******5/26/2022******@
+@*mess around with html + practice pushing files to github*@
+@*talk about sql in next meeting*@
+
 @{
-    ViewData["Title"] = "epic";
+    ViewData["Title"] = "Homepage"; @*shown on the chrome tab*@
 }
+<style>
+    img
+    {
+        width: 200px; @*controls the size of img*@
+        border-radius: 50%; @*controls the feathering of edges of img*@
+        float: left; @*location of img when next to text*@
+        margin-right: 50px; @*space between text and img*@
+    }
+    .heading
+    {
+        font-weight: bold;
+    }
+</style>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<img src="images/psyduck.jpg"/>
 
-<p>epicsauce</p>
+<p class = "heading">
+    epicsauce
+    so this would all be on one line
+    and this would only be bolded because I made a paragraph class called "heading"
+</p>
+
+<p>this would be on another line that's not bolded</p>
