@@ -18,6 +18,11 @@ namespace animelist.Controllers
             return View();
         }
 
+        public IActionResult EpicPage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
