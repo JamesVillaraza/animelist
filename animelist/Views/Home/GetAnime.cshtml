@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AnimeLibrary.Data.AnimeModel
+<h1>James this is the Get Anime example. Goodluck.</h1>
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus orci at ex commodo, sed pharetra nulla consequat. Etiam bibendum tincidunt diam id vulputate. Nullam vitae nisl a tortor fermentum porttitor ut at leo. Phasellus eleifend dapibus eros sed luctus. Nunc vehicula magna eget mauris faucibus bibendum. Curabitur malesuada tortor quis lorem lobortis, vitae elementum orci scelerisque. Nunc consequat id ligula ac hendrerit. Pellentesque faucibus nisi nibh, vitae scelerisque felis rhoncus sed. Vivamus aliquam posuere arcu in sollicitudin. Vestibulum nec sapien eget leo pulvinar auctor a quis tellus. Aenean tincidunt justo neque.
+
+    Nunc rhoncus, nunc et tempor rutrum, ex urna fringilla felis, id lobortis metus urna vel velit. Sed ut dolor nec odio placerat viverra fermentum eu ex. Pellentesque vitae quam tincidunt, volutpat massa id, dapibus erat. Donec turpis lectus, semper a justo vel, pharetra laoreet mi. Nulla bibendum commodo purus sed facilisis. Praesent a ultricies diam, ut blandit enim. Nunc condimentum nulla et orci placerat, nec pretium eros imperdiet. In placerat varius nibh, at ullamcorper nulla convallis et. Vestibulum id lectus lacus. Fusce interdum imperdiet eros ac pharetra. Integer vel accumsan quam. Cras et diam sed massa suscipit tristique. Phasellus id tortor id purus convallis dignissim. Phasellus auctor ex eget turpis tincidunt, id bibendum mauris sollicitudin. Sed sit amet rhoncus leo.
+
+</p>
+@{
+    //c#    COMMENTS
+    //SUPER EPIC!!!
+    string test = "this is c# code!!!!";
+}
+<style>
+    table, th, td{
+        border: 1px solid black;
+    }
+</style>
+
+<h2>Anime</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Total Episodes</th>
+        <th>Total Seasons</th>
+        <th>Rating</th>
+        <th>Genre</th>
+        <th>Air Date</th>
+        <th>Thumbnail</th>
+    </tr>
+    <tr>
+        <td>@Model.animeID</td>
+        <td>@Model.animeName</td>
+        <td>@Model.totalEpisodes</td>
+        <td>@Model.totalSeason</td>
+        <td>@Model.publicRating</td>
+        <td>@Model.animeType</td>
+        <td>@Model.airDate</td>
+        <td>@Model.animeThumbnail</td>
+    </tr>
+
+</table>

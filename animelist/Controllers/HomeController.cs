@@ -1,6 +1,7 @@
 ﻿using animelist.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using AnimeLibrary.Data;
 
 namespace animelist.Controllers
 {
@@ -26,6 +27,14 @@ namespace animelist.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult GetAnime()
+        {
+            DataAccess da = new DataAccess(_logger);
+            AnimeModel model = da.GetAnimeModel(1);
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

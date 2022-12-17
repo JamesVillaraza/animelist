@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimeLibrary.Models
+namespace AnimeLibrary.Data
 {
-    class ReviewModel
+    public class ReviewModel
     {
         public int reviewID { get; set; }
         public string animeTitle { get; set; }

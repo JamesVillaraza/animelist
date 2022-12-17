@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimeLibrary.Models
+namespace AnimeLibrary.Data
 {
-    class EpisodeModel
+    public class EpisodeModel
     {
         public int episodeID { get; set; }
         public string episodeName { get; set; }

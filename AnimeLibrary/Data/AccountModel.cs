@@ -5,9 +5,9 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimeLibrary.Models
+namespace AnimeLibrary.Data
 {
-    class AccountModel
+    public class AccountModel
     {
         public int accountID { get; set; }
         public string accountName { get; set; }
