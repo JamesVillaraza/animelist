@@ -34,7 +34,14 @@ namespace animelist.Controllers
             DataAccess da = new DataAccess(_logger);
             AnimeModel model = da.GetAnimeModel(1);
 
+            model.animeType = TransformDelimiter(model.animeType);
+
             return View(model);
+        }
+
+        private string TransformDelimiter(string str)
+        {
+            return str.Replace("~*~", ", ");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

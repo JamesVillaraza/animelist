@@ -13,7 +13,7 @@ namespace AnimeLibrary.Data
 
     {
         //connection string
-        private string connectionString = "data source=localhost;initial catalog=AL12172022;trusted_connection=true";
+        private string connectionString = "data source=localhost;initial catalog=AL12172022v1;trusted_connection=true";
         private readonly string _delimiter = "~*~";
         private readonly ILogger _logger;
         public DataAccess(ILogger logger)
