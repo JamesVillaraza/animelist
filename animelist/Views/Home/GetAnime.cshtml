@@ -15,6 +15,7 @@
     //c#    COMMENTS
     //SUPER EPIC!!!
     string test = "this is c# code!!!!";
+    string mimeType = "data:image/png;base64," + Model.animeThumbnail;
 }
 <style>
     table, th, td{
@@ -42,7 +43,7 @@
         <td>@Model.publicRating</td>
         <td>@Model.animeType</td>
         <td>@Model.airDate</td>
-        <td>@Model.animeThumbnail</td>
+        <td><img src=@mimeType /></td>
     </tr>
 
 </table>
