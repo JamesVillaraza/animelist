@@ -34,7 +34,12 @@ namespace animelist.Controllers
             DataAccess da = new DataAccess(_logger);
             List<AnimeModel> models = da.GetAnimeModels();
 
-            return View(models);
+            return View(model);
+        }
+
+        private string TransformDelimiter(string str)
+        {
+            return str.Replace("~*~", ", ");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
