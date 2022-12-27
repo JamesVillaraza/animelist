@@ -13,7 +13,7 @@ namespace AnimeLibrary.Data
 
     {
         //connection string
-        private string connectionString = "data source=localhost;initial catalog=AL12172022;trusted_connection=true";
+        private string connectionString = "data source=localhost;initial catalog=AL12172022v1;trusted_connection=true";
         private readonly string _delimiter = "~*~";
         private readonly ILogger _logger;
         public DataAccess(ILogger logger)
@@ -87,7 +87,7 @@ namespace AnimeLibrary.Data
                 //and the connectionstring, to tell us which database to query against
                 SqlCommand command = new SqlCommand(queryString, connection);
                 //specific line to add parameters
-               
+
 
                 try
                 {
@@ -123,7 +123,7 @@ namespace AnimeLibrary.Data
                 "DELETE FROM dbo.Anime WHERE animeID = @aID";
             int id = am.animeID;
 
-            using(SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.Parameters.AddWithValue("@aID", id);
@@ -135,7 +135,7 @@ namespace AnimeLibrary.Data
 
                     reader.Close();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.LogError(ex, "Unable to Delete Anime");
                     throw;
@@ -183,6 +183,32 @@ namespace AnimeLibrary.Data
             return em;
         }
 
+        public void DeleteEpisodeModel(EpisodeModel em)
+        {
+            string queryString =
+                "DELETE FROM dbo.Episode WHERE episodeID = @epID";
+            int id = em.episodeID;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@epID", id);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Unable to Delete Episode");
+                    throw;
+                }
+            }
+        }
+
         //ReviewListModel data access
         public ReviewListModel GetReviewListModel(int id)
         {
@@ -218,7 +244,31 @@ namespace AnimeLibrary.Data
             }
             return rlm;
         }
+        public void DeleteReviewListModel(ReviewListModel rlm)
+        {
+            string queryString =
+                "DELETE FROM dbo.ReviewList WHERE listName = @lName";
+            string id = rlm.listName;
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@lName", id);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Unable to Delete Review List");
+                    throw;
+                }
+            }
+        }
         public ReviewModel GetReviewModel(int id)
         {
             ReviewModel rm = new ReviewModel();
@@ -258,6 +308,32 @@ namespace AnimeLibrary.Data
                 }
 
                 return rm;
+            }
+        }
+
+        public void DeleteReviewModel(ReviewModel rm)
+        {
+            string queryString =
+                "DELETE FROM dbo.Review WHERE reviewID = @rID";
+            int id = rm.reviewID;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@rID", id);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Unable to Delete User Review");
+                    throw;
+                }
             }
         }
     }
