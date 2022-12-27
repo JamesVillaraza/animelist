@@ -34,7 +34,7 @@ namespace animelist.Controllers
             DataAccess da = new DataAccess(_logger);
             List<AnimeModel> models = da.GetAnimeModels();
 
-            return View(model);
+            return View(models);
         }
 
         private string TransformDelimiter(string str)
