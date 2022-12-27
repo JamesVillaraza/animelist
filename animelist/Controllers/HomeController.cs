@@ -28,6 +28,7 @@ namespace animelist.Controllers
         {
             return View();
         }
+        //Action functions for anime
         public ActionResult Delete(int animeID)
         {
             DataAccess da = new DataAccess(_logger);
@@ -37,7 +38,6 @@ namespace animelist.Controllers
 
             return RedirectToAction("GetAnime");
         }
-
         public IActionResult GetAnime()
         {
             DataAccess da = new DataAccess(_logger);
