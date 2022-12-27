@@ -28,6 +28,15 @@ namespace animelist.Controllers
         {
             return View();
         }
+        public ActionResult Delete(int animeID)
+        {
+            DataAccess da = new DataAccess(_logger);
+            AnimeModel todelete = da.GetAnimeModel(animeID);
+
+            da.DeleteAnime(todelete);
+
+            return RedirectToAction("GetAnime");
+        }
 
         public IActionResult GetAnime()
         {

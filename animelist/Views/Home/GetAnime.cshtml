@@ -34,6 +34,7 @@
         <th>Genre</th>
         <th>Air Date</th>
         <th>Thumbnail</th>
+        <th>Actions</th>
     </tr>
     @foreach(var anm in Model)
     {
@@ -47,6 +48,11 @@
             <td>@anm.animeType</td>
             <td>@anm.airDate</td>
             <td><img src=@thumbnail /></td>
+            <td>
+                <div class="col-4 text=right text=bottom">
+                    @Html.ActionLink("super cool epic delete", "Delete", new{animeID = anm.animeID})
+                </div>
+            </td>
         </tr>
     }
 

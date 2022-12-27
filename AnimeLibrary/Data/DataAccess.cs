@@ -117,6 +117,32 @@ namespace AnimeLibrary.Data
             }
         }
 
+        public void DeleteAnime(AnimeModel am)
+        {
+            string queryString =
+                "DELETE FROM dbo.Anime WHERE animeID = @aID";
+            int id = am.animeID;
+
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@aID", id);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    reader.Close();
+                }
+                catch(Exception ex)
+                {
+                    _logger.LogError(ex, "Unable to Delete Anime");
+                    throw;
+                }
+            }
+        }
+
         //EpisodeModel data access
         public EpisodeModel GetEpisodeModel(int id)
         {
