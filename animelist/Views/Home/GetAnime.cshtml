@@ -3,7 +3,7 @@
 *@
 @{
 }
-@model AnimeLibrary.Data.AnimeModel
+@model List<AnimeLibrary.Data.AnimeModel>
 <h1>James this is the Get Anime example. Goodluck.</h1>
 <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus orci at ex commodo, sed pharetra nulla consequat. Etiam bibendum tincidunt diam id vulputate. Nullam vitae nisl a tortor fermentum porttitor ut at leo. Phasellus eleifend dapibus eros sed luctus. Nunc vehicula magna eget mauris faucibus bibendum. Curabitur malesuada tortor quis lorem lobortis, vitae elementum orci scelerisque. Nunc consequat id ligula ac hendrerit. Pellentesque faucibus nisi nibh, vitae scelerisque felis rhoncus sed. Vivamus aliquam posuere arcu in sollicitudin. Vestibulum nec sapien eget leo pulvinar auctor a quis tellus. Aenean tincidunt justo neque.
@@ -15,7 +15,7 @@
     //c#    COMMENTS
     //SUPER EPIC!!!
     string test = "this is c# code!!!!";
-    string mimeType = "data:image/png;base64," + Model.animeThumbnail;
+    string mimeType = "data:image/png;base64,";
 }
 <style>
     table, th, td{
@@ -35,15 +35,21 @@
         <th>Air Date</th>
         <th>Thumbnail</th>
     </tr>
-    <tr>
-        <td>@Model.animeID</td>
-        <td>@Model.animeName</td>
-        <td>@Model.totalEpisodes</td>
-        <td>@Model.totalSeason</td>
-        <td>@Model.publicRating</td>
-        <td>@Model.animeType</td>
-        <td>@Model.airDate</td>
-        <td><img src=@mimeType /></td>
-    </tr>
+    @foreach(var anm in Model)
+    {
+        string thumbnail = mimeType + anm.animeThumbnail;
+        <tr>
+            <td>@anm.animeID</td>
+            <td>@anm.animeName</td>
+            <td>@anm.totalEpisodes</td>
+            <td>@anm.totalSeason</td>
+            <td>@anm.publicRating</td>
+            <td>@anm.animeType</td>
+            <td>@anm.airDate</td>
+            <td><img src=@thumbnail /></td>
+        </tr>
+    }
+
+    
 
 </table>

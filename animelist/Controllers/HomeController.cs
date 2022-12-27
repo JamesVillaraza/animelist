@@ -32,9 +32,9 @@ namespace animelist.Controllers
         public IActionResult GetAnime()
         {
             DataAccess da = new DataAccess(_logger);
-            AnimeModel model = da.GetAnimeModel(1);
+            List<AnimeModel> models = da.GetAnimeModels();
 
-            return View(model);
+            return View(models);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
