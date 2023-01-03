@@ -29,19 +29,25 @@ namespace animelist.Controllers
             return View();
         }
         //Action functions for anime
-        public ActionResult Delete(int animeID)
+        public ActionResult DeleteAnime(int animeID)
         {
             DataAccess da = new DataAccess(_logger);
             AnimeModel todelete = da.GetAnimeModel(animeID);
 
             da.DeleteAnime(todelete);
 
-            return RedirectToAction("GetAnime");
+            return RedirectToAction("GetAnime"); //returns to page of "GetAnime.cshtml"
         }
         public IActionResult GetAnime()
         {
             DataAccess da = new DataAccess(_logger);
             List<AnimeModel> models = da.GetAnimeModels();
+
+            //apply delimiter for anime genres
+            foreach (AnimeModel model in models)
+            {
+                model.animeType = TransformDelimiter(model.animeType);
+            }
 
             return View(models);
         }
@@ -49,6 +55,25 @@ namespace animelist.Controllers
         private string TransformDelimiter(string str)
         {
             return str.Replace("~*~", ", ");
+        }
+
+        //Action functions for episode
+        public IActionResult GetEpisode()
+        {
+            DataAccess da = new DataAccess(_logger);
+            List<EpisodeModel> models = da.GetEpisodeModels();
+
+            return View(models);
+        }
+        public ActionResult DeleteEpisode(int episodeID)
+        {
+            //figure out redirect
+            DataAccess da = new DataAccess(_logger);
+            EpisodeModel todelete = da.GetEpisodeModel(episodeID);
+
+            da.DeleteEpisode(todelete);
+
+            return RedirectToAction("GetEpisode");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

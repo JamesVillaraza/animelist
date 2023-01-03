@@ -179,11 +179,49 @@ namespace AnimeLibrary.Data
                     _logger.LogError(ex, "Unable to access the Episode");
                     throw;
                 }
+                return em;
             }
-            return em;
         }
 
-        public void DeleteEpisodeModel(EpisodeModel em)
+        public List<EpisodeModel> GetEpisodeModels()
+        {
+            List<EpisodeModel> ems = new List<EpisodeModel>();
+
+            //refer to GetAnimeModels (line 77) if I want to add more parameters later
+            string queryString =
+                "SELECT episodeID, episodeName, episodeDuration, animeID, episodeNumber, seasonNumber FROM dbo.Episode";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        EpisodeModel e = new EpisodeModel();
+                        e.episodeID = (int)reader[0];
+                        e.episodeName = (string)reader[1];
+                        e.episodeDuration = (string)reader[2];
+                        e.animeID = (int)reader[3];
+                        e.episodeNumber = (int)reader[4];
+                        e.seasonNumber = (int)reader[5];
+                        ems.Add(e);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Unable to access the Episode");
+                    throw;
+                }
+                return ems;
+            }
+        }
+
+        public void DeleteEpisode(EpisodeModel em)
         {
             string queryString =
                 "DELETE FROM dbo.Episode WHERE episodeID = @epID";
