@@ -13,7 +13,7 @@ namespace AnimeLibrary.Data
 
     {
         //connection string
-        private string connectionString = "data source=localhost;initial catalog=AL12172022v1;trusted_connection=true";
+        private string connectionString = "data source=localhost;initial catalog=AL01032023v1;trusted_connection=true";
         private readonly string _delimiter = "~*~";
         private readonly ILogger _logger;
         public DataAccess(ILogger logger)
@@ -307,6 +307,8 @@ namespace AnimeLibrary.Data
                 }
             }
         }
+
+        //ReviewModel data access
         public ReviewModel GetReviewModel(int id)
         {
             ReviewModel rm = new ReviewModel();
@@ -328,9 +330,9 @@ namespace AnimeLibrary.Data
                         ReviewModel r = new ReviewModel();
                         r.reviewID = (int)reader[0];
                         r.animeTitle = (string)reader[1];
-                        r.statusOptions = (ReviewModel.StatusOptions)reader[2];
+                        r.statusOptions = (string?)reader[2];
                         r.episodesWatched = (int)reader[3];
-                        r.overallRating = (float)reader[4];
+                        r.overallRating = (double)reader[4];
                         r.accountID = (int)reader[5];
                         r.startDate = (DateTime)reader[6];
                         r.endDate = (DateTime)reader[7];
@@ -348,8 +350,46 @@ namespace AnimeLibrary.Data
                 return rm;
             }
         }
+        public List<ReviewModel> GetReviewModels()
+        {
+            List<ReviewModel> rms = new List<ReviewModel>();
 
-        public void DeleteReviewModel(ReviewModel rm)
+            string queryString =
+                "SELECT reviewID, animeTitle, statusOptions, episodesWatched, overallRating, accountID, startDate, endDate, isFavorite FROM dbo.Review";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ReviewModel r = new ReviewModel();
+                        r.reviewID = (int)reader[0];
+                        r.animeTitle = (string)reader[1];
+                        r.statusOptions = (string?)reader[2];
+                        r.episodesWatched = (int)reader[3];
+                        r.overallRating = (double)reader[4];
+                        r.accountID = (int)reader[5];
+                        r.startDate = (DateTime)reader[6];
+                        r.endDate = (DateTime)reader[7];
+                        r.isFavorite = (bool)reader[8];
+                        rms.Add(r);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Unable to access the User Review");
+                    throw;
+                }
+                return rms;
+            }
+        }
+        public void DeleteReview(ReviewModel rm)
         {
             string queryString =
                 "DELETE FROM dbo.Review WHERE reviewID = @rID";

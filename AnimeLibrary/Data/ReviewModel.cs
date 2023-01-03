@@ -10,7 +10,7 @@ namespace AnimeLibrary.Data
     {
         public int reviewID { get; set; }
         public string animeTitle { get; set; }
-        public StatusOptions statusOptions { get; set; }
+        public string? statusOptions { get; set; }
         public int episodesWatched { get; set; }
         public double overallRating { get; set; }
         public int accountID { get; set; }
@@ -25,7 +25,6 @@ namespace AnimeLibrary.Data
             Ongoing,
             Finished,
             Unreleased
-            
         }
 
     }

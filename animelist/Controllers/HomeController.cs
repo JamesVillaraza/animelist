@@ -76,6 +76,24 @@ namespace animelist.Controllers
             return RedirectToAction("GetEpisode");
         }
 
+        //Action functions for review
+        public IActionResult GetReview()
+        {
+            DataAccess da = new DataAccess(_logger);
+            List<ReviewModel> models = da.GetReviewModels();
+
+            return View(models);
+        }
+        public ActionResult DeleteReview(int reviewID)
+        {
+            DataAccess da = new DataAccess(_logger);
+            ReviewModel todelete = da.GetReviewModel(reviewID);
+
+            da.DeleteReview(todelete);
+
+            return RedirectToAction("GetReview");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

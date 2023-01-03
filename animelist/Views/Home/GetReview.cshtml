@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "NEW EPIC REVIEW PAGE";
+}
+
+@{
+    <h1>Super duper epic reviews!</h1>
+
+    <h2>Reviews</h2>
+
+    <style>
+    table, th, td{
+        border: 1px solid black;
+    }
+    </style>
+    <table>
+        <tr>
+            <th>Review ID</th>
+            <th>Anime Title</th>
+            <th>Status</th>
+            <th># of Episodes Watched</th>
+            <th>Rating</th>
+            <th>Account ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Favorite?</th>
+        </tr>
+        @foreach(var rem in Model)
+        {
+            <tr>
+                <td>@rem.reviewID</td>
+                <td>@rem.animeTitle</td>
+                <td>@rem.statusOptions</td>
+                <td>@rem.episodesWatched</td>
+                <td>@rem.overallRating</td>
+                <td>@rem.accountID</td>
+                <td>@rem.startDate</td>
+                <td>@rem.endDate</td>
+                <td>@rem.isFavorite</td>
+                <td>
+                    <div class="col-4 text=right text=bottom">
+                        @Html.ActionLink("super cool epic delete", "DeleteReview", new{reviewID = rem.reviewID})
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}
